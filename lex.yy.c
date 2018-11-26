@@ -341,6 +341,9 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
+
+#define yywrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -396,13 +399,13 @@ static const YY_CHAR yy_ec[256] =
         1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    4,    1,    5,    5,    5,
         5,    5,    5,    5,    5,    5,    5,    1,    6,    1,
-        1,    1,    1,    1,    7,    1,    8,    9,   10,    1,
-       11,    1,   12,    1,    1,   13,    1,   14,   15,   16,
-        1,   17,   18,   19,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,   20,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    7,    1,    8,    1,    9,   10,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+       11,    1,   12,    1,   13,    1,    1,   14,    1,   15,
+       16,   17,    1,   18,   19,   20,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -428,11 +431,11 @@ static const YY_CHAR yy_meta[21] =
 
 static const flex_int16_t yy_base[49] =
     {   0,
-        0,    0,   57,   58,   58,   58,   17,   58,   44,   41,
-       42,   38,   42,   41,   45,   19,   32,   39,   33,   34,
-       37,   25,   38,   34,   58,   31,   26,   20,   18,   24,
-       58,   17,   28,   26,   23,   58,   18,   16,   58,   19,
-       16,   15,   12,   16,    8,   58,   58,   58
+        0,    0,   57,   58,   58,   58,   17,   58,   43,   40,
+       41,   37,   41,   40,   45,   19,   31,   38,   32,   33,
+       36,   24,   38,   33,   58,   30,   25,   19,   31,   23,
+       58,   16,   27,   25,   22,   58,   17,   15,   58,   18,
+       15,   14,   11,   15,    7,   58,   58,   58
     } ;
 
 static const flex_int16_t yy_def[49] =
@@ -446,8 +449,8 @@ static const flex_int16_t yy_def[49] =
 
 static const flex_int16_t yy_nxt[79] =
     {   0,
-        4,    5,    6,    4,    7,    8,    4,    9,    4,   10,
-        4,    4,   11,    4,    4,   12,   13,   14,    4,    4,
+        4,    5,    6,    4,    7,    8,    4,    4,    9,    4,
+       10,    4,    4,   11,    4,    4,   12,   13,   14,    4,
        15,   16,   15,   16,   47,   46,   45,   44,   43,   42,
        41,   40,   39,   38,   37,   36,   35,   34,   33,   32,
        31,   30,   23,   29,   28,   27,   26,   25,   24,   23,
@@ -490,8 +493,9 @@ char *yytext;
 #line 1 "zjs.lex"
 #line 2 "zjs.lex"
     #include <stdio.h>
-#line 493 "lex.yy.c"
-#line 494 "lex.yy.c"
+    #include "zjs.tab.h" // Must be included so that the lexer will return correct tokens to parser
+#line 497 "lex.yy.c"
+#line 498 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -708,10 +712,10 @@ YY_DECL
 		}
 
 	{
-#line 5 "zjs.lex"
+#line 7 "zjs.lex"
 
 
-#line 714 "lex.yy.c"
+#line 718 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -780,66 +784,66 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "zjs.lex"
-{printf("END\n");return yytext[0];}	// This statement exits the interpreter
+#line 9 "zjs.lex"
+{return END;}	// This statement exits the interpreter
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 8 "zjs.lex"
-{printf("END_STATEMENT\n");}	// All commands should end with a semicolon
+#line 10 "zjs.lex"
+{return END_STATEMENT;}	// All commands should end with a semicolon
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 9 "zjs.lex"
-{printf("POINT\n");}	// When we match the command to plot a point
+#line 11 "zjs.lex"
+{return POINT;}	// When we match the command to plot a point
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 10 "zjs.lex"
-{printf("LINE\n");}	// When we match the command to draw a line
+#line 12 "zjs.lex"
+{return LINE;}	// When we match the command to draw a line
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 11 "zjs.lex"
-{printf("CIRCLE\n");}	// When we match the command to draw a circle
+#line 13 "zjs.lex"
+{return CIRCLE;}	// When we match the command to draw a circle
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 12 "zjs.lex"
-{printf("RECTANGLE\n");}	// When we match the command to draw a rectangle
+#line 14 "zjs.lex"
+{return RECTANGLE;}	// When we match the command to draw a rectangle
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 13 "zjs.lex"
-{printf("SET_COLOR\n");}	// When we match the command to draw a rectangle 
+#line 15 "zjs.lex"
+{return SET_COLOR;}	// When we match the command to draw a rectangle 
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 14 "zjs.lex"
-{printf("INT\n"); }	// Matches an integer value
+#line 16 "zjs.lex"
+{yylval.intVal = atoi(yytext); return INT;}	// Matches an integer value
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 15 "zjs.lex"
-{printf("FLOAT\n");}	// Matches a floating-point value
+#line 17 "zjs.lex"
+{yylval.floatVal = atof(yytext);  return FLOAT;}	// Matches a floating-point value
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 16 "zjs.lex"
+#line 18 "zjs.lex"
 ; // Ignore these chars!
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 17 "zjs.lex"
+#line 19 "zjs.lex"
 {printf("ERROR: Unknown character '%s' on line %d\n", yytext,  yylineno);}	// Tells the user they messed up and on which line
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 18 "zjs.lex"
+#line 20 "zjs.lex"
 ECHO;
 	YY_BREAK
-#line 842 "lex.yy.c"
+#line 846 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1856,11 +1860,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 18 "zjs.lex"
+#line 20 "zjs.lex"
 
  
-int main(int argc, char** argv){
-  yylex();    // Start lexing!
-  return 0;
-}
 

@@ -1,23 +1,21 @@
 %{
     #include <stdio.h>
+    #include "zjs.tab.h" // Must be included so that the lexer will return correct tokens to parser
 %}
 %option yylineno
+%option noyywrap
 %%
 
-END	{printf("END\n");return yytext[0];}	// This statement exits the interpreter
-;	{printf("END_STATEMENT\n");}	// All commands should end with a semicolon
-POINT	{printf("POINT\n");}	// When we match the command to plot a point
-LINE	{printf("LINE\n");}	// When we match the command to draw a line
-CIRCLE	{printf("CIRCLE\n");}	// When we match the command to draw a circle
-RECTANGLE	{printf("RECTANGLE\n");}	// When we match the command to draw a rectangle
-SET_COLOR	{printf("SET_COLOR\n");}	// When we match the command to draw a rectangle 
-[0-9]+	{printf("INT\n"); }	// Matches an integer value
-[0-9]+\.[0-9]+	{printf("FLOAT\n");}	// Matches a floating-point value
+end	{return END;}	// This statement exits the interpreter
+;	{return END_STATEMENT;}	// All commands should end with a semicolon
+point	{return POINT;}	// When we match the command to plot a point
+line	{return LINE;}	// When we match the command to draw a line
+circle	{return CIRCLE;}	// When we match the command to draw a circle
+rectangle	{return RECTANGLE;}	// When we match the command to draw a rectangle
+set_color	{return SET_COLOR;}	// When we match the command to draw a rectangle 
+[0-9]+		{yylval.intVal = atoi(yytext); return INT;}	// Matches an integer value
+[0-9]+\.[0-9]+	{yylval.floatVal = atof(yytext);  return FLOAT;}	// Matches a floating-point value
 [\n\t ]         			; // Ignore these chars!
 .	{printf("ERROR: Unknown character '%s' on line %d\n", yytext,  yylineno);}	// Tells the user they messed up and on which line
 %%
  
-int main(int argc, char** argv){
-  yylex();    // Start lexing!
-  return 0;
-}
