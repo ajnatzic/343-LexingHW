@@ -124,13 +124,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 10 "zjs.y" /* yacc.c:355  */
+#line 12 "zjs.y" /* yacc.c:355  */
 
 	int intVal;
 	float floatVal;
-	char* stringVal;
 
-#line 134 "zjs.tab.c" /* yacc.c:355  */
+#line 133 "zjs.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -147,7 +146,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 151 "zjs.tab.c" /* yacc.c:358  */
+#line 150 "zjs.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -445,8 +444,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    32,    32,    35,    36,    39,    40,    41,    42,    43,
-      46,    55,    64,    73,    82,    91
+       0,    36,    36,    39,    40,    43,    44,    45,    46,    47,
+      54,    66,    79,    91,   103,   115
 };
 #endif
 
@@ -1231,7 +1230,7 @@ yyreduce:
   switch (yyn)
     {
         case 10:
-#line 47 "zjs.y" /* yacc.c:1648  */
+#line 55 "zjs.y" /* yacc.c:1648  */
     {
   if((yyvsp[-4].intVal) >= 0 && (yyvsp[-4].intVal) <= WIDTH &&  (yyvsp[-3].intVal) >= 0 && (yyvsp[-3].intVal) <= HEIGHT) {
     line((yyvsp[-4].intVal),(yyvsp[-3].intVal),(yyvsp[-2].intVal),(yyvsp[-1].intVal));
@@ -1239,11 +1238,11 @@ yyreduce:
     printf("ERROR: Points must be between 0 and %d for width and 0 and %d for height", WIDTH, HEIGHT);
   }
 }
-#line 1243 "zjs.tab.c" /* yacc.c:1648  */
+#line 1242 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 11:
-#line 56 "zjs.y" /* yacc.c:1648  */
+#line 67 "zjs.y" /* yacc.c:1648  */
     {
   if ((yyvsp[-2].intVal) >= 0 && (yyvsp[-2].intVal) <= WIDTH && (yyvsp[-1].intVal) >= 0 && (yyvsp[-1].intVal) <= HEIGHT) {
     point((yyvsp[-2].intVal), (yyvsp[-1].intVal));
@@ -1251,11 +1250,11 @@ yyreduce:
     printf("ERROR: Points must be between 0 and %d for width and 0 and %d for height\n", WIDTH, HEIGHT);
   }
 }
-#line 1255 "zjs.tab.c" /* yacc.c:1648  */
+#line 1254 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 12:
-#line 65 "zjs.y" /* yacc.c:1648  */
+#line 80 "zjs.y" /* yacc.c:1648  */
     {
   if((yyvsp[-3].intVal) >= 0 && (yyvsp[-3].intVal) <= WIDTH && (yyvsp[-2].intVal) >= 0 && (yyvsp[-2].intVal) <= HEIGHT && (yyvsp[-1].intVal) >= 0){
     circle((yyvsp[-3].intVal),(yyvsp[-2].intVal),(yyvsp[-1].intVal));
@@ -1263,11 +1262,11 @@ yyreduce:
     printf("ERROR: Points must be between 0 and %d for width and 0 and %d for height and positive for radius\n", WIDTH, HEIGHT);
   }
 }
-#line 1267 "zjs.tab.c" /* yacc.c:1648  */
+#line 1266 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 13:
-#line 74 "zjs.y" /* yacc.c:1648  */
+#line 92 "zjs.y" /* yacc.c:1648  */
     {
   if ((yyvsp[-4].intVal) >= 0 && (yyvsp[-4].intVal) <= WIDTH && (yyvsp[-3].intVal) >= 0 && (yyvsp[-3].intVal) <= HEIGHT) {
     rectangle((yyvsp[-4].intVal), (yyvsp[-3].intVal), (yyvsp[-2].intVal), (yyvsp[-1].intVal));
@@ -1275,11 +1274,11 @@ yyreduce:
     printf("ERROR: Points must be between 0 and %d for width and 0 and %d for height\n", WIDTH, HEIGHT);
   }
 }
-#line 1279 "zjs.tab.c" /* yacc.c:1648  */
+#line 1278 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 14:
-#line 83 "zjs.y" /* yacc.c:1648  */
+#line 104 "zjs.y" /* yacc.c:1648  */
     {
   if ((yyvsp[-3].intVal) >= 0 && (yyvsp[-3].intVal) <= 255 && (yyvsp[-2].intVal) >= 0 && (yyvsp[-2].intVal) <= 255 && (yyvsp[-1].intVal) >= 0 && (yyvsp[-1].intVal) <= 255) {
     set_color((yyvsp[-3].intVal), (yyvsp[-2].intVal), (yyvsp[-1].intVal));
@@ -1287,20 +1286,20 @@ yyreduce:
     printf("ERROR: RGB Values must be betweem 0 - 255\n");
   }
 }
-#line 1291 "zjs.tab.c" /* yacc.c:1648  */
+#line 1290 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 15:
-#line 92 "zjs.y" /* yacc.c:1648  */
+#line 116 "zjs.y" /* yacc.c:1648  */
     {
   finish();
   return 0;
 }
-#line 1300 "zjs.tab.c" /* yacc.c:1648  */
+#line 1299 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
 
-#line 1304 "zjs.tab.c" /* yacc.c:1648  */
+#line 1303 "zjs.tab.c" /* yacc.c:1648  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1528,7 +1527,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 96 "zjs.y" /* yacc.c:1907  */
+#line 120 "zjs.y" /* yacc.c:1907  */
 
 
 extern FILE* yyin;
@@ -1536,7 +1535,7 @@ extern FILE* yyin;
 int main(int argc, char** argv){
 	setup();
 	yyin = fopen(argv[1], "r");
-	yyparse();
+	yyparse();	// start parsing
 	return 0;
 }
 int yyerror(const char* err){

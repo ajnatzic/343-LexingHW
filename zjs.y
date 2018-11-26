@@ -6,11 +6,12 @@
 	int yylex();
 	extern char* yytext;
 %}
-
+/**
+* specifies what types of values can be used for a specific token
+**/
 %union	{
 	int intVal;
 	float floatVal;
-	char* stringVal;
 }
 
 
@@ -29,6 +30,9 @@
 
 %%
 
+/**
+* this defines the grammar of our language. Only proper statements will be accepted according to rules below
+**/
 program: statement_list end;
        ;
 
@@ -43,6 +47,10 @@ statement: line
 	 | set_color 
 	 ;
 
+/**
+* definition of a line, requires 2 pairs of x and y values to make a valid line
+**/
+
 line: LINE INT INT INT INT END_STATEMENT
 {
   if($2 >= 0 && $2 <= WIDTH &&  $3 >= 0 && $3 <= HEIGHT) {
@@ -52,6 +60,9 @@ line: LINE INT INT INT INT END_STATEMENT
   }
 };
 
+/**
+* definition of a point, requires a pair of x and y values to make a valid point
+**/
 point: POINT INT INT END_STATEMENT
 {
   if ($2 >= 0 && $2 <= WIDTH && $3 >= 0 && $3 <= HEIGHT) {
@@ -61,6 +72,10 @@ point: POINT INT INT END_STATEMENT
   }
 };
 
+/**
+* definition of a circle, requires a pair of x and y values for the center point, 
+* then a value for the length of the radius
+**/
 circle: CIRCLE INT INT INT END_STATEMENT
 {
   if($2 >= 0 && $2 <= WIDTH && $3 >= 0 && $3 <= HEIGHT && $4 >= 0){
@@ -70,6 +85,9 @@ circle: CIRCLE INT INT INT END_STATEMENT
   }
 };
 
+/**
+* definition of a rectangle, requires a pair of x and y values, width and height
+**/
 rectangle: RECTANGLE INT INT INT INT END_STATEMENT
 {
   if ($2 >= 0 && $2 <= WIDTH && $3 >= 0 && $3 <= HEIGHT) {
@@ -79,6 +97,9 @@ rectangle: RECTANGLE INT INT INT INT END_STATEMENT
   }
 };
 
+/**
+* definition of set_color, requires 3 integers corresponding to an RGB code
+**/
 set_color: SET_COLOR INT INT INT END_STATEMENT
 {
   if ($2 >= 0 && $2 <= 255 && $3 >= 0 && $3 <= 255 && $4 >= 0 && $4 <= 255) {
@@ -88,6 +109,9 @@ set_color: SET_COLOR INT INT INT END_STATEMENT
   }
 };
 
+/**
+* ends the program when END token is emitted
+**/
 end: END END_STATEMENT
 {
   finish();
@@ -100,7 +124,7 @@ extern FILE* yyin;
 int main(int argc, char** argv){
 	setup();
 	yyin = fopen(argv[1], "r");
-	yyparse();
+	yyparse();	// start parsing
 	return 0;
 }
 int yyerror(const char* err){

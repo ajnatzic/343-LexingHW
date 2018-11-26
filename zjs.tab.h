@@ -63,13 +63,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 10 "zjs.y" /* yacc.c:1910  */
+#line 12 "zjs.y" /* yacc.c:1910  */
 
 	int intVal;
 	float floatVal;
-	char* stringVal;
 
-#line 73 "zjs.tab.h" /* yacc.c:1910  */
+#line 72 "zjs.tab.h" /* yacc.c:1910  */
 };
 
 typedef union YYSTYPE YYSTYPE;
